@@ -1,113 +1,190 @@
-import Image from 'next/image'
+"use client"
 
-export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+import React, { useState ,useRef } from 'react';
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+type lengthType = number;
+type typesInput = boolean;
+type passwordtype = string;
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+ function  Home() {
+  const [passwordLength, setPasswordLength] = useState<lengthType>(10);
+  const [includeSymbols, setIncludeSymbols] = useState<typesInput>(false);
+  const [includeNumber, setIncludeNumber] = useState<typesInput>(false);
+  const [includeCapital, setIncludeCapital] = useState<typesInput>(false);
+  const [includeString, setIncludeString] = useState<typesInput>(true);
+  const [password, setPassword] = useState<passwordtype>('');
+  const passwordDataRef = useRef<HTMLTextAreaElement>(null);
+  
+function handlechangeLength(event: React.ChangeEvent<HTMLInputElement>){
+  let newLength : string = event.target.value;
+  const parsed = parseInt(newLength, 10);
+  setPasswordLength(parsed);
+ }
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+function handleChangeNumber(){
+  setIncludeNumber(!includeNumber);
 }
+function handlechangeSymbol(){
+  setIncludeSymbols(!includeSymbols)
+}
+function handlechangeCapital(){
+  setIncludeCapital(!includeCapital)
+}
+function handleChangeString(){
+  setIncludeString(!includeString)
+}
+
+const handleGeneratePassword = () => {
+  setPassword("");
+  const passwordTxt = document.querySelector("textarea");
+    generatePassword(passwordLength, includeSymbols, includeNumber, includeCapital, includeString)
+ 
+};
+
+const handleCopy =() =>{
+
+if (passwordDataRef.current) {
+  passwordDataRef.current.select();
+}
+   document.execCommand('copy');   
+   alert('Text copied to clipboard!');
+}
+
+
+const generatePassword = (passwordLength:number, includeSymbols:typesInput, includeNumber:typesInput, includeCapital:typesInput, includeString:typesInput) =>{
+  const upperChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const lowerChars = 'abcdefghijklmnopqrstuvwxyz';
+  const numberChars = '0123456789';
+  const symbolChars = '!@#$%^&*()-_=+[]{}|;:,.<>?';
+
+  let validChars = "";
+
+  if(includeString)
+  {
+     validChars += lowerChars;    
+  }
+ 
+  if(includeCapital)
+  {
+    validChars += upperChars;
+  }
+  if(includeSymbols)
+  {
+    validChars += symbolChars;
+  }
+  if(includeNumber)
+  {
+    validChars += numberChars;
+  }
+  let password = '';
+  if(includeSymbols==false && includeNumber==false && includeCapital==false && includeString==false)
+  {
+    alert("Please select character type!!")
+  }
+  else
+  {
+    for (let i = 0; i < passwordLength; i++) {
+      const randomIndex = Math.floor(Math.random() * validChars.length);
+      password += validChars[randomIndex];
+    }
+  }
+ 
+  console.log(password);
+  setPassword(password);
+}
+
+  return (
+    <div className="text-white bg-black" >
+     
+      <div className="grid justify-items-center mb-20 mt-6">
+
+       <h1 className="uppercase font-bold tracking-wider hover:tracking-widest text-5xl" style={{textShadow:" 2px 3px #145485"}}>Password Generator</h1>
+      </div>
+       
+       <div className="grid justify-items-center">
+
+          <div className="flex mb-10 ">
+
+              <textarea name="" id="" value={password}  ref={passwordDataRef} cols={80} rows={1} placeholder='Password will show here!' className="text-stone-950 rounded-lg border-solid border-2 border-black-400 hover:border-blue-400  py-2 pl-9 pr-3 bg-indigo-50"></textarea>&nbsp;&nbsp;&nbsp;&nbsp;
+
+                <button  className="rounded-lg border-black text-lg text-white px-8 py-2 bg-sky-500 hover:bg-sky-700 active:bg-sky-800 focus:outline-none focus:ring focus:ring-sky-300"
+                    onClick={handleCopy} >
+                  Copy
+                  </button>
+          </div>
+          
+          
+          <div className="mb-14">
+            <button onClick={handleGeneratePassword} className="rounded-lg border-black text-lg text-white px-8 py-2 ml-10 bg-sky-500 hover:bg-sky-700 active:bg-sky-800 focus:outline-none focus:ring focus:ring-sky-300">
+              Generate Password
+              </button>
+          </div>
+          
+          <div className="ml-10">
+                <div className="mb-10">
+                    <label htmlFor="" style={{textShadow:" 1px 2px #0284c7"}} className="text-lg hover:tracking-wide">Length : </label> &nbsp;&nbsp;&nbsp;&nbsp;
+                    <label htmlFor=""style={{textShadow:" 1px 2px #0284c7"}}>4 </label>
+                      <input type="range"  min="4" max="20"   value={passwordLength}
+                                onChange={handlechangeLength} className="hover:cursor-pointer"/>
+                        <label htmlFor="" style={{textShadow:" 1px 2px #0284c7"}}> 20 </label>
+                </div>
+              
+                <div>
+
+                      <div className="div1">
+                          <label htmlFor="" className="text-lg hover:tracking-wide" style={{textShadow:" 1px 2px #0284c7"}}> Number : </label>
+                          <div className="t_btn1">
+                              <label className="toggle-switch ">
+                                  <input type="checkbox" checked={includeNumber} onChange={handleChangeNumber}/>
+                                  <span className="slider"></span>
+                              </label>
+                            </div>
+                      </div>
+                      <br />
+
+                    <div className="div1">
+                        <label htmlFor="" className="text-lg hover:tracking-wide" style={{textShadow:" 1px 2px #0284c7"}}> Symbol : </label>
+                        <div className="t_btn2">
+                              <label className="toggle-switch">
+                                <input type="checkbox" checked={includeSymbols} onChange={handlechangeSymbol}/>
+                                <span className="slider"></span>
+                              </label>
+                        </div>
+                    </div>
+                    <br />
+
+                    <div className="div1">
+                        <label htmlFor="" className="text-lg hover:tracking-wide" style={{textShadow:" 1px 2px #0284c7"}}> Capital : </label>
+                        <div className="t_btn3">
+                              <label className="toggle-switch">
+                                <input type="checkbox" checked={includeCapital} onChange={handlechangeCapital}/>
+                                <span className="slider"></span>
+                              </label>
+                        </div>
+                    </div>
+                    
+                    <br />
+                    <div className="div1">
+                        <label htmlFor="" className="text-lg hover:tracking-wide" style={{textShadow:" 1px 2px #0284c7"}}> String : </label>
+                        <div className="t_btn4">
+                              <label className="toggle-switch">
+                                <input type="checkbox" checked={includeString} onChange={ handleChangeString}/>
+                                <span className="slider"></span>
+                              </label>
+                        </div>
+                    </div>
+                    
+
+                  <br />
+                </div>
+
+              
+          </div>
+        </div>
+    </div>
+  );
+};
+
+
+export default Home;

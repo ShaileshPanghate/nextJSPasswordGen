@@ -2,26 +2,74 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+  align-self: auto;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+/* Style for the slider (the "knob" of the toggle switch) */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 34px;
+  transition: .4s;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+/* Style for the slider when it's "on" (checked) */
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  border-radius: 50%;
+  transition: .4s;
+}
+
+/* Style for the slider when it's "off" (unchecked) */
+input[type="checkbox"]:checked + .slider {
+  background-color: #2196F3;
+}
+
+/* Style for the slider when it's "on" (checked) */
+input[type="checkbox"]:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* Hide the default checkbox */
+input[type="checkbox"] {
+  display: none;
+}
+
+.div1{
+  display: inline-flex;
+  margin-bottom: 25px;
+}
+
+.t_btn1{
+  display: flex;
+  margin-left: 65px;
+}
+.t_btn2{
+  display: flex;
+  margin-left: 70px;
+}
+.t_btn3{
+  display: flex;
+  margin-left: 75px;
+}
+.t_btn4{
+  display: flex;
+  margin-left: 80px;
 }
